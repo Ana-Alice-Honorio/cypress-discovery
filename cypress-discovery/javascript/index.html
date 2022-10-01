@@ -7,24 +7,55 @@
     <title>Cypress Discovery</title>
 </head>
 <body>
-    <!-- <h1>Olá, <span id="nome"></span></h1> -->
     <h1>CNH</h1>
-    <input name="nome">
-    <input name="idade">
+    <input type="text" name="nome" placeholder="Seu primeiro nome">
+    <input type="number" name="idade" placeholder="Sua idade">
+    <button type="button" onclick="verificarIdade()">Verificar idade</button>
+
+    <h1>Vingadores</h1>
+
+    <button type="button" onclick="avengersList()">Avengers</button>
+
+    <ul id="avengers"></ul>
 
     <script type="text/javascript">
-        // var nome = prompt("Qual seu  nome");
-        // var recebeIdade = prompt("Qual sua idade");
 
-        // var idade = parseInt(recebeIdade);
+        var avengers = ['Tony Stark' ,'Bruce Banner', 'Natasha Romanoff', 'Steve Rogers' ];
 
-        // console.log(nome);
-        // console.log(typeof nome);
+        function avengersList() {
 
-        // console.log(idade);
-        // console.log(typeof idade);
-        
-        // document.getElementById('nome').innerText = nome;
+          var ul = document.getElementById("avengers");
+          ul.innerHTML = '';
+
+          avengers.forEach(function(oneAvenger) {
+          var li = document.createElement('li');
+          var text = document.createTextNode(oneAvenger);
+          li.appendChild(text);
+          ul.appendChild(li);
+        })
+        }
+
+        function verificarIdade() {
+       var nome = document.querySelector('input[name=nome]');
+       var idade = document.querySelector('input[name=idade]');
+
+       if (idade.value.length === 0) {
+         alert('Idade é um campo obrigatório')
+         return
+       }
+
+       var idadeNum = parseInt(idade.value);
+      
+       if (idadeNum >= 18) {
+         alert('Ok, você pode tirar sua CNH')
+       } else if (idadeNum > 4 ) {
+         alert('Sugiro andar de bike')
+       }
+       else {
+         alert('Melhor você tomar leite..')
+       }
+        }
+
     </script>
 </body>
 </html>
